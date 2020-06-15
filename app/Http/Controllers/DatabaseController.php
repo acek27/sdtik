@@ -12,6 +12,7 @@ class DatabaseController extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,6 +23,7 @@ class DatabaseController extends Controller
         $data_base = JenisDatabase::all();
         return view('Database.dashboard', compact('data_base'));
     }
+
     public function tablebase()
     {
         return DataTables::of(JenisDatabase::all())
@@ -40,13 +42,13 @@ class DatabaseController extends Controller
      */
     public function create()
     {
-       return view('Database.create');
+        return view('Database.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -61,7 +63,7 @@ class DatabaseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -72,12 +74,12 @@ class DatabaseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $base = JenisDatabase::all()->where('id_database',$id)->first();
+        $base = JenisDatabase::all()->where('id_database', $id)->first();
         return view('Database.edit', compact('base'));
         // return $ram;
     }
@@ -85,8 +87,8 @@ class DatabaseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -103,7 +105,7 @@ class DatabaseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

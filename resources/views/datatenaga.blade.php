@@ -21,7 +21,7 @@
                 @endif
             </small>
         </h1>
-        
+
     </section>
 @endsection
 
@@ -72,7 +72,7 @@
                     <br>-->
                     <div class="table-responsive">
                         <table class="table">
-						<tr><h4>Biodata Tenaga Teknis TIK</h4></tr>
+                            <tr><h4>Biodata Tenaga Teknis TIK</h4></tr>
                             <tr>
                                 <th style="width:50%">Divisi</th>
                                 <td><p id="divisi"></td>
@@ -113,11 +113,11 @@
                                 <th>NO Rekening</th>
                                 <td id="no_rekening"></td>
                             </tr>
-							 <tr>
+                            <tr>
                                 <th>NPWP</th>
                                 <td id="npwp"></td>
                             </tr>
-							 <tr>
+                            <tr>
                                 <th>Nama Dev Team</th>
                                 <td id="dev_team"></td>
                             </tr>
@@ -130,7 +130,7 @@
     </div>
 @endsection
 @push('script')
-  <!--  <script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <!--  <script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 	-->
     <script>
@@ -156,15 +156,15 @@
                 $('#divisi').text(data.nama_divisi);
                 $('#nik').text(data.nik);
                 $('#nm_tenaga').text(data.nm_tenaga);
-                $('#ttl').text(data.tempat_lahir +', '+ data.tgl_lahir);
+                $('#ttl').text(data.tempat_lahir + ', ' + data.tgl_lahir);
                 $('#alamat').text(data.alamat);
                 $('#email').text(data.email);
                 $('#hp').text(data.telp);
                 $('#jk').text(data.jenis_kelamin);
-                $('#pendidikan').text(data.pendidikan +', '+ data.prog_studi);
-				$('#no_rekening').text(data.no_rekening);
+                $('#pendidikan').text(data.pendidikan + ', ' + data.prog_studi);
+                $('#no_rekening').text(data.no_rekening);
                 $('#npwp').text(data.npwp);
-				$('#dev_team').text(data.dev_team);
+                $('#dev_team').text(data.dev_team);
             });
         });
     </script>

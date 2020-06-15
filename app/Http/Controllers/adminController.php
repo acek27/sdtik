@@ -21,11 +21,11 @@ class adminController extends Controller
     {
         $data = tenagateknis::all();
         $donat = tenagateknis::select(DB::raw('count(*) as total'))->groupby('id_pendidikan')->get();
-        $chart = tenagateknis::select('id_divisi',DB::raw('count(*) as total'))->groupby('id_divisi')->get();
+        $chart = tenagateknis::select('id_divisi', DB::raw('count(*) as total'))->groupby('id_divisi')->get();
 
         $re = [0, 0, 0, 0];
         foreach ($chart as $key => $value) {
-            $re[$value->id_divisi - 1]= $value->total;
+            $re[$value->id_divisi - 1] = $value->total;
         }
         $data1 = implode(', ', $re);
         return view('dashboards', compact('data', 'data1', 'donat'));
@@ -89,11 +89,11 @@ class adminController extends Controller
                 ->addColumn('action', function ($data) {
                     $edit = '<a href="' . route('homes.edit', $data->id_tenaga) . '" class="edit-data"><i class="fa fa-edit"></i></a>';
                     $detail = '<a href="#" data-id="' . $data->id_tenaga . '" class="show-data"><i class="fas fa-search"></i></a>';
-                    $del = '<a href="' .route ('datatenaga.hapus',$data->id_tenaga) . '" class="hapus-data" ><i class="fa fa-trash"></i></a>';
-                    return $edit . '&nbsp' . '&nbsp' . $detail .'&nbsp'.$del;
+                    $del = '<a href="' . route('datatenaga.hapus', $data->id_tenaga) . '" class="hapus-data" ><i class="fa fa-trash"></i></a>';
+                    return $edit . '&nbsp' . '&nbsp' . $detail . '&nbsp' . $del;
 
                 })->make(true);
-        }else {
+        } else {
             return DataTables::of(tenagateknis::join('tb_jk', 'tb_tenagateknis.id_jk', '=', 'tb_jk.id_jk')
                 ->where('tb_tenagateknis.id_divisi', $request->id))
                 ->addColumn('action', function ($data) {
@@ -101,12 +101,12 @@ class adminController extends Controller
                     return $detail;
                 })->make(true);
         }//else {
-           // return DataTables::of(tenagateknis::join('tb_divisi', 'tb_tenagateknis.id_divisi', '=', 'tb_divisi.id_divisi')
-            //    ->where('tb_tenagateknis.id_divisi', $request->id))
-             //   ->addColumn('action', function ($data) {
-              //     $del = '<a href="#" data-id="' . $data->id_tenaga . '" class="hapus-data" style="font-size: 15px"><i class="fa fa-trash" style="color:#d9534f" ></i></a>';
-               //     return $del;
-                //})->make(true);
+        // return DataTables::of(tenagateknis::join('tb_divisi', 'tb_tenagateknis.id_divisi', '=', 'tb_divisi.id_divisi')
+        //    ->where('tb_tenagateknis.id_divisi', $request->id))
+        //   ->addColumn('action', function ($data) {
+        //     $del = '<a href="#" data-id="' . $data->id_tenaga . '" class="hapus-data" style="font-size: 15px"><i class="fa fa-trash" style="color:#d9534f" ></i></a>';
+        //     return $del;
+        //})->make(true);
         //}
     }
 
@@ -155,9 +155,9 @@ class adminController extends Controller
         $data->id_jk = $request->get('jeniskelamin');
         $data->id_pendidikan = $request->get('pendidikan');
         $data->prog_studi = $request->get('jurusan');
-		$data->no_rekening = $request->get('no_rekening');
+        $data->no_rekening = $request->get('no_rekening');
         $data->npwp = $request->get('npwp');
-		$data->dev_team = $request->get('dev_team');
+        $data->dev_team = $request->get('dev_team');
         $data->id_divisi = $request->get('divisi');
         $data->update();
 
@@ -177,9 +177,9 @@ class adminController extends Controller
      */
     public function destroy($id)
     {
-	DB::table('tb_tenagateknis')->where('id_tenaga',$id)->delete();
-		
-	// alihkan halaman ke halaman pegawai
-	return redirect()->route('homes.index');	 
+        DB::table('tb_tenagateknis')->where('id_tenaga', $id)->delete();
+
+        // alihkan halaman ke halaman pegawai
+        return redirect()->route('homes.index');
     }
 }

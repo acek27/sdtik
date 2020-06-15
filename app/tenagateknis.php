@@ -13,14 +13,16 @@ class tenagateknis extends Model
 
     public function jeniskelamin()
     {
-        return $this->belongsTo(jeniskelamin::class,'id_jk');
+        return $this->belongsTo(jeniskelamin::class, 'id_jk');
     }
+
     public function divisi()
     {
-        return $this->belongsTo(divisi::class,'id_divisi');
+        return $this->belongsTo(divisi::class, 'id_divisi');
     }
+
     public function pendidikan()
     {
-        return $this->belongsTo(pendidikan::class,'id_pendidikan');
+        return $this->belongsTo(pendidikan::class, 'id_pendidikan');
     }
 }

@@ -22,7 +22,7 @@ class tenagaController extends Controller
         $jk = jeniskelamin::all();
         $divisi = divisi::all();
         $pendidikan = pendidikan::all();
-        return view('index', compact('jk','divisi','pendidikan'));
+        return view('index', compact('jk', 'divisi', 'pendidikan'));
     }
 
     /**
@@ -38,12 +38,11 @@ class tenagaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-	 
-	  
-	 
+
+
     public function store(Request $request)
     {
         $divisi = $request->get('divisi');
@@ -57,17 +56,17 @@ class tenagaController extends Controller
         $jeniskelamin = $request->get('jeniskelamin');
         $pendidikan = $request->get('pendidikan');
         $jurusan = $request->get('jurusan');
-		$no_rekening = $request->get('no_rekening');
+        $no_rekening = $request->get('no_rekening');
         $npwp = $request->get('npwp');
-		$dev_team = $request->get('dev_team');
+        $dev_team = $request->get('dev_team');
 
         $request->validate([
             'tanggallahir' => 'date|required',
             'nik' => 'numeric|digits:16|required',
             'hp' => 'numeric|required',
             'email' => 'email|required',
-			'npwp' => 'numeric|digits:20|required',
-			'no_rekening' => 'numeric|digits:15|required',
+            'npwp' => 'numeric|digits:20|required',
+            'no_rekening' => 'numeric|digits:15|required',
         ]);
 
         $tenaga = new tenagateknis();
@@ -79,21 +78,21 @@ class tenagaController extends Controller
         $tenaga->email = $email;
         $tenaga->telp = $hp;
         $tenaga->id_jk = $jeniskelamin;
-        $tenaga->id_pendidikan =$pendidikan;
+        $tenaga->id_pendidikan = $pendidikan;
         $tenaga->prog_studi = $jurusan;
         $tenaga->npwp = $npwp;
-		$tenaga->dev_team = $dev_team;
-		$tenaga->no_rekening = $no_rekening;
+        $tenaga->dev_team = $dev_team;
+        $tenaga->no_rekening = $no_rekening;
         $tenaga->id_divisi = $divisi;
         $tenaga->save();
-		
-		
-	    $tenaga= new User();
-		$tenaga->name = $nama;
-		$tenaga->email= $email;
-		$tenaga->password = '$2y$10$ddYpnwrV/Is9Dn97LTnpyeD/WHSGpoZyRgb53HP9RrEatcuwob8S2';
-		$tenaga->role_id = '2';
-		$tenaga->save();
+
+
+        $tenaga = new User();
+        $tenaga->name = $nama;
+        $tenaga->email = $email;
+        $tenaga->password = '$2y$10$ddYpnwrV/Is9Dn97LTnpyeD/WHSGpoZyRgb53HP9RrEatcuwob8S2';
+        $tenaga->role_id = '2';
+        $tenaga->save();
 
         \Session::flash("flash_notification", [
             "level" => "success",
@@ -105,7 +104,7 @@ class tenagaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -116,7 +115,7 @@ class tenagaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -127,8 +126,8 @@ class tenagaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
@@ -139,7 +138,7 @@ class tenagaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

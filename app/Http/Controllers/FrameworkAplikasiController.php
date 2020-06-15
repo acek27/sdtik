@@ -8,10 +8,11 @@ use Yajra\DataTables\DataTables;
 
 class FrameworkAplikasiController extends Controller
 {
-public function __construct()
+    public function __construct()
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,6 +23,7 @@ public function __construct()
         $data_frame = FrameworkPlatform::all();
         return view('FrameworkPlatform.dashboard', compact('data_frame'));
     }
+
     public function tableframe()
     {
         return DataTables::of(FrameworkPlatform::all())
@@ -40,21 +42,21 @@ public function __construct()
      */
     public function create()
     {
-       return view('FrameworkPlatform.create');
+        return view('FrameworkPlatform.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $request->validate([
-			'jenis_platform' => 'unique:tb_framework_platform|required',
+            'jenis_platform' => 'unique:tb_framework_platform|required',
             'jenis_framework' => 'unique:tb_framework_platform|required',
-			
+
         ]);
         FrameworkPlatform::create($request->all());
         return redirect()->route('data_frame.index')->with(['success' => 'Berhasil Disimpan']);
@@ -63,7 +65,7 @@ public function __construct()
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -74,12 +76,12 @@ public function __construct()
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $frame01 = FrameworkPlatform::all()->where('id_framework_platform',$id)->first();
+        $frame01 = FrameworkPlatform::all()->where('id_framework_platform', $id)->first();
         return view('FrameworkPlatform.edit', compact('frame01'));
         // return $ram;
     }
@@ -87,19 +89,19 @@ public function __construct()
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $request->validate([
             'jenis_platform' => 'required',
-			'jenis_framework' => 'required',
+            'jenis_framework' => 'required',
         ]);
         $frame01 = FrameworkPlatform::find($id);
-		$frame01->jenis_platform = $request->get('jenis_platform');
-		$frame01->jenis_framework = $request->get('jenis_framework');
+        $frame01->jenis_platform = $request->get('jenis_platform');
+        $frame01->jenis_framework = $request->get('jenis_framework');
         $frame01->update();
         return redirect()->route('data_frame.index')->with(['success' => 'Berhasil Diedit']);
     }
@@ -107,7 +109,7 @@ public function __construct()
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

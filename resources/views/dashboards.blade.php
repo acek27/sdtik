@@ -9,44 +9,48 @@
 @endsection
 @section('header')
     <section class="content-header">
-        
-      
+
+
     </section>
 @endsection
 @section('content')
-<style>
-.bg-light-blue-gradient{
-background: #3c8dbc !important;
-background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #3c8dbc), color-stop(1, #67a8ce)) !important;
-background: -ms-linear-gradient(bottom, #3c8dbc, #67a8ce) !important;
-background: -moz-linear-gradient(center bottom, #3c8dbc 0, #67a8ce 100%) !important;
-background: -o-linear-gradient(#67a8ce, #3c8dbc) !important;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#67a8ce', endColorstr='#3c8dbc', GradientType=0) !important;
-color: #fff;
-}
-.box {
-    position: relative;
-    border-radius: 3px;
-    background: #ffffff;
-    border-top: 3px solid #d2d6de;
-    margin-bottom: 20px;
-    width: 100%;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-}
-.box .box-header .box-title {
-    font-size: 24px;
-}
-.box-header > .fa, .box-header > .glyphicon, .box-header > .ion, .box-header .box-title {
-    display: inline-block;
-    font-size: 18px;
-    margin: 0;
-    line-height: 1;
-}
-.h1, .h2, .h3, .h4, body, h1, h2, h3, h4, h5, h6 {
-    font-family: Roboto,Helvetica,Arial,sans-serif;
-    font-weight: 300;
-}
-</style>
+    <style>
+        .bg-light-blue-gradient {
+            background: #3c8dbc !important;
+            background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #3c8dbc), color-stop(1, #67a8ce)) !important;
+            background: -ms-linear-gradient(bottom, #3c8dbc, #67a8ce) !important;
+            background: -moz-linear-gradient(center bottom, #3c8dbc 0, #67a8ce 100%) !important;
+            background: -o-linear-gradient(#67a8ce, #3c8dbc) !important;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#67a8ce', endColorstr='#3c8dbc', GradientType=0) !important;
+            color: #fff;
+        }
+
+        .box {
+            position: relative;
+            border-radius: 3px;
+            background: #ffffff;
+            border-top: 3px solid #d2d6de;
+            margin-bottom: 20px;
+            width: 100%;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .box .box-header .box-title {
+            font-size: 24px;
+        }
+
+        .box-header > .fa, .box-header > .glyphicon, .box-header > .ion, .box-header .box-title {
+            display: inline-block;
+            font-size: 18px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .h1, .h2, .h3, .h4, body, h1, h2, h3, h4, h5, h6 {
+            font-family: Roboto, Helvetica, Arial, sans-serif;
+            font-weight: 300;
+        }
+    </style>
     <section class="content">
         <!-- Small boxes (Stat box) -->
         <div class="row">
@@ -131,7 +135,7 @@ color: #fff;
                     <div class="box-body">
                         <div class="chart">
                             <canvas id="myChart" style="height:230px"></canvas>
-							
+
                         </div>
                     </div>
                     <!-- /.box-body -->
@@ -145,12 +149,12 @@ color: #fff;
                 <div class="box box-solid bg-light-blue-gradient">
                     <div class="box-header">
                         <i class="fas fa-graduation-cap"></i>
-						<h3 class="box-title">
+                        <h3 class="box-title">
                             Pendidikan
                         </h3>
                         <div class="chart">
-                        <canvas id="donat" style="height:230px; "></canvas>
-						</div>
+                            <canvas id="donat" style="height:230px; "></canvas>
+                        </div>
                     </div>
 
                 </div>
@@ -165,17 +169,17 @@ color: #fff;
                 <h3 class="box-title">
                     Tabel Tenaga Teknis TIK
                 </h3>
-				
+
                 <a href="{{route('download')}}" class="btn btn-primary pull-right" style="margin-right: 5px;">
                     <i class="fa fa-download"></i> Download
-                  
+
                 </a>
-				  <div class="" style="margin-bottom:10px;"><br></div>
+                <div class="" style="margin-bottom:10px;"><br></div>
             </div>
-			
+
             <!-- /.box-header -->
             <div class="box-body table-responsive">
-                <table id="data_tenaga" class="table table-striped dataTable no-footer"  style="width:1069px">
+                <table id="data_tenaga" class="table table-striped dataTable no-footer" style="width:1069px">
                     <thead>
                     <tr>
                         <th>NIK</th>
@@ -201,7 +205,7 @@ color: #fff;
                     <br>
                     <div class="table-responsive">
                         <table class="table">
-							<tr><h4>Biodata Tenaga Teknis TIK</h4></tr>
+                            <tr><h4>Biodata Tenaga Teknis TIK</h4></tr>
                             <tr>
                                 <th>Divisi</th>
                                 <td><p id="divisi"></td>
@@ -238,7 +242,7 @@ color: #fff;
                                 <th>Pendidikan</th>
                                 <td id="pendidikan"></td>
                             </tr>
-							<tr>
+                            <tr>
                                 <th>No Rekening</th>
                                 <td id="no_rekening"></td>
                             </tr>
@@ -246,11 +250,11 @@ color: #fff;
                                 <th>NPWP</th>
                                 <td id="npwp"></td>
                             </tr>
-							<tr>
+                            <tr>
                                 <th>Nama Dev Team</th>
                                 <td id="dev_team"></td>
                             </tr>
-							
+
                         </table>
                     </div>
                     <br>
@@ -271,7 +275,7 @@ color: #fff;
                 datasets: [{
                     label: 'Tenaga Teknis TIK',
                     data: [
-                       {{$data1}}
+                        {{$data1}}
                     ],
                     backgroundColor: [
                         'rgba(0, 192, 239, 1)',
@@ -320,7 +324,7 @@ color: #fff;
         var donat = new Chart(nut, {
             type: 'doughnut',
             data: {
-                labels: ['SMA/SMK','Diploma 1','Diploma 3', 'Diploma 4 / Strata 1','S2'],
+                labels: ['SMA/SMK', 'Diploma 1', 'Diploma 3', 'Diploma 4 / Strata 1', 'S2'],
                 datasets: [{
                     label: 'Tenaga Teknis TIK',
                     data: [
@@ -360,7 +364,7 @@ color: #fff;
     </script>
 @endpush
 @push('script')
-   <!-- <script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <!-- <script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>-->
     <script>
         $(document).ready(function () {
@@ -373,12 +377,12 @@ color: #fff;
                     {data: 'nm_tenaga', name: 'nm_tenaga'},
                     {data: 'tgl_lahir', name: 'tgl_lahir'},
                     {data: 'telp', name: 'telp'},
-                    {data: 'nama_divisi', name: 'nama_divisi',orderable: false, searchable: false, align: 'center'},
+                    {data: 'nama_divisi', name: 'nama_divisi', orderable: false, searchable: false, align: 'center'},
                     {data: 'action', name: 'action', orderable: false, searchable: false, align: 'center'},
                 ],
             });
         });
-          
+
         $('body').on("click", '.show-data', function (e) {
             $('#myModal').modal("show");
             $.get("{{url('/biodata')}}/" + $(this).attr('data-id'), function (data) {
@@ -392,11 +396,11 @@ color: #fff;
                 $('#hp').text(data.telp);
                 $('#jk').text(data.jenis_kelamin);
                 $('#pendidikan').text(data.pendidikan + ', ' + data.prog_studi);
-				$('#no_rekening').text(data.no_rekening);
+                $('#no_rekening').text(data.no_rekening);
                 $('#npwp').text(data.npwp);
-				$('#dev_team').text(data.dev_team);
+                $('#dev_team').text(data.dev_team);
             });
         });
-		
+
     </script>
 @endpush

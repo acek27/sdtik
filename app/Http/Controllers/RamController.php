@@ -12,6 +12,7 @@ class RamController extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,6 +23,7 @@ class RamController extends Controller
         $data_ram = Ram::all();
         return view('Ram.dashboard', compact('data_ram'));
     }
+
     public function tableram()
     {
         return DataTables::of(Ram::all())
@@ -40,20 +42,20 @@ class RamController extends Controller
      */
     public function create()
     {
-       return view('Ram.create');
+        return view('Ram.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $request->validate([
             'ukuran_ram' => 'unique:tb_ram|required',
-			'keterangan' => 'required'
+            'keterangan' => 'required'
         ]);
         Ram::create($request->all());
         return redirect()->route('data_ram.index')->with(['success' => 'Berhasil Disimpan']);
@@ -62,7 +64,7 @@ class RamController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -73,12 +75,12 @@ class RamController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $ram = ram::all()->where('id_ram',$id)->first();
+        $ram = ram::all()->where('id_ram', $id)->first();
         return view('Ram.edit', compact('ram'));
         // return $ram;
     }
@@ -86,19 +88,19 @@ class RamController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $request->validate([
             'ukuran_ram' => 'required',
-			'keterangan' => 'required'
+            'keterangan' => 'required'
         ]);
         $ram = Ram::find($id);
         $ram->ukuran_ram = $request->get('ukuran_ram');
-		$ram->keterangan = $request->get('keterangan');
+        $ram->keterangan = $request->get('keterangan');
         $ram->update();
         return redirect()->route('data_ram.index')->with(['success' => 'Berhasil Diedit']);
     }
@@ -106,7 +108,7 @@ class RamController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

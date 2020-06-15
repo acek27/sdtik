@@ -8,7 +8,7 @@ class Ram extends Model
 {
     protected $table = 'tb_ram';
     protected $primaryKey = 'id_ram';
-protected $fillable = array('ukuran_ram','keterangan');
-	
+    protected $fillable = array('ukuran_ram', 'keterangan');
+
     public $timestamps = false;
 }

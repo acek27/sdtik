@@ -27,18 +27,16 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-           
-		
-		
+
+
         // $re = [0, 0, 0, 0];
         // foreach ($chart as $key => $value) {
         //     $re[$value->id_divisi - 1]= $value->total;
         // }
         // $data1 = implode(', ', $chart-<);
-    // return redirect()->view('dashhome');	
-	
-				
-	
+        // return redirect()->view('dashhome');
+
+
 //    }
-		
-}
+
+    }
