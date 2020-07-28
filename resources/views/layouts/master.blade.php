@@ -5,7 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 @yield('title')
-    <!-- Tell the browser to be responsive to screen width -->
+<!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Font Awesome -->
@@ -358,7 +358,15 @@
         <!-- Control sidebar content goes here -->
     </aside>
     <!-- /.control-sidebar -->
+    <footer class="main-footer">
+        <div class="float-right d-none d-sm-block">
+            <b>SDTIK</b> 1.0.1-alpha
+        </div>
+        <strong>Copyright © 2020 <a href="{{url('https://sdtik.situbondokab.go.id')}}">Dinas Kominfo dan Persandian Kab. Situbondo</a>.</strong> All rights
+        reserved.
+    </footer>
 </div>
+
 </body>
 <!-- ./wrapper -->
 

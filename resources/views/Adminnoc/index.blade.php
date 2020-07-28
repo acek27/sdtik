@@ -121,10 +121,10 @@
                         <div class="calendar-time" id="calendar"></div>
                         <br>
                         <div class="text-muted">
-                            <p class="text-sm">Piket Kemaren
+                            <p class="text-sm">Piket Sebelumnya (tgl)
                                 <b class="d-block">Deveint Inc</b>
                             </p>
-                            <p class="text-sm">Piket Besok
+                            <p class="text-sm">Piket Selanjutnya (tgl)
                                 <b class="d-block">Tony Chicken</b>
                             </p>
                         </div>
