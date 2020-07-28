@@ -78,7 +78,6 @@ Route::middleware(['auth', 'can:admin_teknis'])->group(function () {
     Route::get('/biodata/{id}', 'adminController@biodata');
     Route::get('/download', 'adminController@download')->name('download');
     //Route::resource('/delete/{id}','adminController');
-    Route::get('/data_tenaga/hapus/{id}', 'adminController@destroy')->name('datatenaga.hapus');
     Route::Resource('noc', 'AdminNocController');
 });
 

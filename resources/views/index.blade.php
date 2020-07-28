@@ -33,7 +33,6 @@ margin-right: -260px;
 @endsection
 
 @section('content')
-
     <section class="content">
         <div class="container-fluid" style="position: relative;
 	left: 50%;
@@ -248,12 +247,12 @@ margin-right: -260px;
                                         </div>
                                         <div class="form-group" style="margin-top: 0px">
                                             <label for="dev_team" class="col-sm-3 control-label"
-                                                   style="font-size: 12pt">Nama Dev Team</label>
+                                                   style="font-size: 12pt">Password</label>
 
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="dev_team"
+                                                <input type="password" class="form-control" name="password"
                                                        value="{{old('dev_team')}}"
-                                                       id="dev_team" required>
+                                                       id="password" required>
                                             </div>
                                         </div>
                                     </div>
@@ -264,16 +263,12 @@ margin-right: -260px;
 	margin-left: -270px;">SIMPAN
                                         </button>
                                     </div>
-                                    </br>
-                                    </br>
-                                    <!-- /.box-footer -->
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
 @endsection

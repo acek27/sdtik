@@ -6,6 +6,7 @@ use App\divisi;
 use App\jeniskelamin;
 use App\pendidikan;
 use App\tenagateknis;
+use App\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
@@ -87,9 +88,9 @@ class adminController extends Controller
         if ($request->id == 0) {
             return DataTables::of(tenagateknis::join('tb_divisi', 'tb_tenagateknis.id_divisi', '=', 'tb_divisi.id_divisi'))
                 ->addColumn('action', function ($data) {
-                    $edit = '<a href="' . route('homes.edit', $data->id_tenaga) . '" class="edit-data"><i class="fa fa-edit"></i></a>';
-                    $detail = '<a href="#" data-id="' . $data->id_tenaga . '" class="show-data"><i class="fas fa-search"></i></a>';
-                    $del = '<a href="' . route('datatenaga.hapus', $data->id_tenaga) . '" class="hapus-data" ><i class="fa fa-trash"></i></a>';
+                    $edit = '<a href="' . route('homes.edit', $data->id_tenaga) . '" class="edit-data"><i class="fa fa-edit text-primary"></i></a>';
+                    $detail = '<a href="#" data-id="' . $data->user_id . '" class="show-data"><i class="fas fa-search text-success"></i></a>';
+                    $del = '<a href="#" class="hapus-data" data-id="' . $data->user_id . '" ><i class="fa fa-trash text-danger"></i></a>';
                     return $edit . '&nbsp' . '&nbsp' . $detail . '&nbsp' . $del;
 
                 })->make(true);
@@ -100,14 +101,7 @@ class adminController extends Controller
                     $detail = '<a href="#" data-id="' . $data->id_tenaga . '" class="show-data"><i class="fas fa-search"></i></a>';
                     return $detail;
                 })->make(true);
-        }//else {
-        // return DataTables::of(tenagateknis::join('tb_divisi', 'tb_tenagateknis.id_divisi', '=', 'tb_divisi.id_divisi')
-        //    ->where('tb_tenagateknis.id_divisi', $request->id))
-        //   ->addColumn('action', function ($data) {
-        //     $del = '<a href="#" data-id="' . $data->id_tenaga . '" class="hapus-data" style="font-size: 15px"><i class="fa fa-trash" style="color:#d9534f" ></i></a>';
-        //     return $del;
-        //})->make(true);
-        //}
+        }
     }
 
     public function biodata($id)
@@ -115,7 +109,7 @@ class adminController extends Controller
         $biodata = tenagateknis::join('tb_jk', 'tb_tenagateknis.id_jk', '=', 'tb_jk.id_jk')
             ->join('tb_pendidikanterakhir', 'tb_tenagateknis.id_pendidikan', '=', 'tb_pendidikanterakhir.id_pendidikan')
             ->join('tb_divisi', 'tb_tenagateknis.id_divisi', '=', 'tb_divisi.id_divisi')
-            ->where('id_tenaga', $id)->first();
+            ->where('user_id', $id)->first();
         return $biodata;
     }
 
@@ -177,9 +171,7 @@ class adminController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('tb_tenagateknis')->where('id_tenaga', $id)->delete();
-
-        // alihkan halaman ke halaman pegawai
-        return redirect()->route('homes.index');
+        User::destroy($id);
+//        tenagateknis::where('user_id', $id)->delete();
     }
 }

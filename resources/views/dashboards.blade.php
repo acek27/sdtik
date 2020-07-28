@@ -19,6 +19,14 @@
     </div>
 @endsection
 @section('content')
+    @if (session()->has('flash_notification.message'))
+        <div class="alert alert-{{ session()->get('flash_notification.level') }}">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                &times;
+            </button>
+            {!! session()->get('flash_notification.message') !!}
+        </div>
+    @endif
     <div class="row">
         <div class="col-lg-3 col-6">
             <!-- small box -->
@@ -263,10 +271,7 @@
                                 <th>NPWP</th>
                                 <td id="npwp"></td>
                             </tr>
-                            <tr>
-                                <th>Nama Dev Team</th>
-                                <td id="dev_team"></td>
-                            </tr>
+
 
                         </table>
                     </div>
@@ -293,6 +298,34 @@
                     {data: 'action', name: 'action', orderable: false, searchable: false, align: 'center'},
                 ],
             });
+            var del = function (id) {
+                swal({
+                    title: "Apakah anda yakin?",
+                    text: "Anda tidak dapat mengembalikan data yang sudah terhapus!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Iya!",
+                    cancelButtonText: "Tidak!",
+                }).then(
+                    function (result) {
+                        $.ajax({
+                            url: "{{route('homes.index')}}/" + id,
+                            method: "DELETE",
+                        }).done(function (msg) {
+                            dt.ajax.reload();
+                            swal("Deleted!", "Data sudah terhapus.", "success");
+                        }).fail(function (textStatus) {
+                            alert("Request failed: " + textStatus);
+                        });
+                    }, function (dismiss) {
+                        // dismiss can be 'cancel', 'overlay', 'esc' or 'timer'
+                        swal("Cancelled", "Data batal dihapus", "error");
+                    });
+            };
+            $('body').on('click', '.hapus-data', function () {
+                del($(this).attr('data-id'));
+            });
         });
 
         $('body').on("click", '.show-data', function (e) {
@@ -310,7 +343,6 @@
                 $('#pendidikan').text(data.pendidikan + ', ' + data.prog_studi);
                 $('#no_rekening').text(data.no_rekening);
                 $('#npwp').text(data.npwp);
-                $('#dev_team').text(data.dev_team);
             });
         });
     </script>

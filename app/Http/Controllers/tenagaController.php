@@ -8,6 +8,7 @@ use App\pendidikan;
 use App\tenagateknis;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 
 class tenagaController extends Controller
@@ -58,45 +59,45 @@ class tenagaController extends Controller
         $jurusan = $request->get('jurusan');
         $no_rekening = $request->get('no_rekening');
         $npwp = $request->get('npwp');
-        $dev_team = $request->get('dev_team');
 
         $request->validate([
             'tanggallahir' => 'date|required',
             'nik' => 'numeric|digits:16|required',
             'hp' => 'numeric|required',
-            'email' => 'email|required',
-            'npwp' => 'numeric|digits:20|required',
-            'no_rekening' => 'numeric|digits:15|required',
+            'email' => 'email|required|unique:users',
         ]);
 
-        $tenaga = new tenagateknis();
-        $tenaga->nm_tenaga = $nama;
-        $tenaga->tempat_lahir = $tempatlahir;
-        $tenaga->tgl_lahir = $tanggallahir;
-        $tenaga->alamat = $alamat;
-        $tenaga->nik = $nik;
-        $tenaga->email = $email;
-        $tenaga->telp = $hp;
-        $tenaga->id_jk = $jeniskelamin;
-        $tenaga->id_pendidikan = $pendidikan;
-        $tenaga->prog_studi = $jurusan;
-        $tenaga->npwp = $npwp;
-        $tenaga->dev_team = $dev_team;
-        $tenaga->no_rekening = $no_rekening;
-        $tenaga->id_divisi = $divisi;
-        $tenaga->save();
+        $user = new User();
+        $user->name = $nama;
+        $user->email = $email;
+        $user->password = Hash::make($request->get('password'));
+        $user->role_id = '2';
+        $user->save();
 
-
-        $tenaga = new User();
-        $tenaga->name = $nama;
-        $tenaga->email = $email;
-        $tenaga->password = '$2y$10$ddYpnwrV/Is9Dn97LTnpyeD/WHSGpoZyRgb53HP9RrEatcuwob8S2';
-        $tenaga->role_id = '2';
-        $tenaga->save();
+        $cek = User::where('name', $nama)->where('email', $email);
+        if ($cek->exists()) {
+            $user_id = User::where('name', $nama)->where('email', $email)->value('id');
+            $tenaga = new tenagateknis();
+            $tenaga->nm_tenaga = $nama;
+            $tenaga->tempat_lahir = $tempatlahir;
+            $tenaga->tgl_lahir = $tanggallahir;
+            $tenaga->alamat = $alamat;
+            $tenaga->nik = $nik;
+            $tenaga->email = $email;
+            $tenaga->telp = $hp;
+            $tenaga->id_jk = $jeniskelamin;
+            $tenaga->id_pendidikan = $pendidikan;
+            $tenaga->prog_studi = $jurusan;
+            $tenaga->npwp = $npwp;
+            $tenaga->no_rekening = $no_rekening;
+            $tenaga->id_divisi = $divisi;
+            $tenaga->user_id = $user_id;
+            $tenaga->save();
+        }
 
         \Session::flash("flash_notification", [
             "level" => "success",
-            "message" => "Berhasil Menyimpan. Terimakasih, $nama!"
+            "message" => "Berhasil Menyimpan, $nama!"
         ]);
         return redirect()->route('homes.index');
     }

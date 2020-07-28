@@ -10,7 +10,10 @@ class tenagateknis extends Model
     protected $primaryKey = 'id_tenaga';
     protected $with = ['divisi'];
     public $timestamps = false;
-    protected $fillable = [];
+    protected $fillable = ['nm_tenaga', 'tempat_lahir', 'tgl_lahir', 'alamat',
+        'nik', 'email', 'telp', 'id_jk', 'id_pendidikan', 'prog_studi', 'npwp',
+        'no_rekening', 'id_divisi', 'user_id'];
+    protected $attributes = ['dev_team' => 'Team A'];
 
     public function jeniskelamin()
     {

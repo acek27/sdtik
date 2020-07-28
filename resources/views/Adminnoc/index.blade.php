@@ -72,7 +72,7 @@
                                     <div class="info-box-content">
                                         <span
                                             class="info-box-text text-center text-muted">Piket Saat Ini</span>
-                                        <span class="info-box-number text-center text-muted mb-0">{{$data[0]->users->name}}<span>
+                                        <span class="info-box-number text-center text-muted mb-0"> <a href="#" class="show-data" data-id="{{$data[0]->users->id}}"> {{$data[0]->users->name}}</a><span>
                     </span></span></div>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
-                        <h3 class="text-primary"><i class="fas fa-paint-brush"></i> Jadwal Piket NOC</h3>
+                        <h3 class="text-primary"><i class="fas fa-calendar"></i> Jadwal Piket NOC</h3>
                         <div class="calendar-time" id="calendar"></div>
                         <br>
                         <div class="text-muted">
@@ -210,6 +210,77 @@
             <!-- /.card-footer -->
         </div>
     </section>
+{{--    modal--}}
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="card-header border-0 ui-sortable-handle" style="cursor: move;">
+                    <h3 class="card-title">
+                        <i class="fas fa-user"></i>
+                        Biodata Tenaga Teknis
+                    </h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                </div>
+                <div class="modal-header">
+                    <!--<h4>Biodata Tenaga Teknis TIk</h4>-->
+                    <br>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tr>
+                                <th>Divisi</th>
+                                <td><p id="divisi"></td>
+                            </tr>
+                            <tr>
+                                <th>NIK</th>
+                                <td><p id="nik"></td>
+                            </tr>
+                            <tr>
+                                <th>Nama Lengkap & Gelar</th>
+                                <td><p style="text-transform: capitalize" id="nm_tenaga"></td>
+                            </tr>
+                            <tr>
+                                <th>Tempat, Tanggal Lahir</th>
+                                <td id="ttl" style="text-transform: capitalize"></td>
+                            </tr>
+                            <tr>
+                                <th>Alamat</th>
+                                <td id="alamat" style="text-transform: capitalize"></td>
+                            </tr>
+                            <tr>
+                                <th>E-Mail</th>
+                                <td id="email"></td>
+                            </tr>
+                            <tr>
+                                <th>No. HP</th>
+                                <td id="hp"></td>
+                            </tr>
+                            <tr>
+                                <th>Jenis Kelamin</th>
+                                <td id="jk"></td>
+                            </tr>
+                            <tr>
+                                <th>Pendidikan</th>
+                                <td id="pendidikan"></td>
+                            </tr>
+                            <tr>
+                                <th>No Rekening</th>
+                                <td id="no_rekening"></td>
+                            </tr>
+                            <tr>
+                                <th>NPWP</th>
+                                <td id="npwp"></td>
+                            </tr>
+
+                        </table>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @push('script')
     <script src="{{url('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js')}}"></script>
@@ -217,6 +288,23 @@
     <script src="{{url('https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale/id.min.js')}}"></script>
     <script>
         $(document).ready(function () {
+            $('body').on("click", '.show-data', function (e) {
+                $('#myModal').modal("show");
+                $.get("{{url('/biodata')}}/" + $(this).attr('data-id'), function (data) {
+                    console.log(data);
+                    $('#divisi').text(data.nama_divisi);
+                    $('#nik').text(data.nik);
+                    $('#nm_tenaga').text(data.nm_tenaga);
+                    $('#ttl').text(data.tempat_lahir + ', ' + data.tgl_lahir);
+                    $('#alamat').text(data.alamat);
+                    $('#email').text(data.email);
+                    $('#hp').text(data.telp);
+                    $('#jk').text(data.jenis_kelamin);
+                    $('#pendidikan').text(data.pendidikan + ', ' + data.prog_studi);
+                    $('#no_rekening').text(data.no_rekening);
+                    $('#npwp').text(data.npwp);
+                });
+            });
             var calendar = $('#calendar').fullCalendar({
                 editable: true,
                 locale: 'id',
