@@ -39,4 +39,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Reportnoc::class);
     }
+    public function tenagateknis()
+    {
+        return $this->hasMany(tenagateknis::class);
+    }
 }

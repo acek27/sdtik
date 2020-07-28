@@ -177,7 +177,7 @@
         <!-- USERS LIST -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Galeri Tenaga Teknis</h3>
+                <h3 class="card-title">Profil Tenaga Teknis</h3>
 
                 <div class="card-tools">
                     <span class="badge badge-danger">{{$data->count('id')}} Tenaga Teknis</span>
@@ -193,7 +193,7 @@
                     @foreach($data as $galeri)
                         <li>
                             <img src="dist/img/user1-128x128.jpg" alt="User Image">
-                            <a class="users-list-name" href="#">{{$galeri->nm_tenaga}}</a>
+                            <a class="users-list-name" href="{{route('profildetail',$galeri->id_tenaga)}}">{{$galeri->nm_tenaga}}</a>
                             <span class="users-list-date">{{$galeri->divisi->nama_divisi}}</span>
                         </li>
                     @endforeach
@@ -202,7 +202,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer text-center">
-                <a href="#">View All Users</a>
+                <a href="{{route('profils')}}">View All Users</a>
             </div>
             <!-- /.card-footer -->
         </div>

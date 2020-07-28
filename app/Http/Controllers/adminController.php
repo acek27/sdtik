@@ -20,7 +20,7 @@ class adminController extends Controller
      */
     public function index()
     {
-        $data = tenagateknis::all();
+        $data = tenagateknis::all()->take(4);
         $donat = tenagateknis::select(DB::raw('count(*) as total'))->groupby('id_pendidikan')->get();
         $chart = tenagateknis::select('id_divisi', DB::raw('count(*) as total'))->groupby('id_divisi')->get();
 
@@ -98,7 +98,7 @@ class adminController extends Controller
             return DataTables::of(tenagateknis::join('tb_jk', 'tb_tenagateknis.id_jk', '=', 'tb_jk.id_jk')
                 ->where('tb_tenagateknis.id_divisi', $request->id))
                 ->addColumn('action', function ($data) {
-                    $detail = '<a href="#" data-id="' . $data->id_tenaga . '" class="show-data"><i class="fas fa-search"></i></a>';
+                    $detail = '<a href="#" data-id="' . $data->user_id . '" class="show-data"><i class="fas fa-search"></i></a>';
                     return $detail;
                 })->make(true);
         }

@@ -26,55 +26,48 @@
 @endsection
 
 @section('content')
-    <section class="content">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">
-                    @if($dataid == 1)
-                        Tabel Tenaga Programmer
-                    @elseif($dataid == 2)
-                        Tabel Tenaga JARKOMDAT
-                    @elseif($dataid == 3)
-                        Tabel Tenaga Multimedia
-                    @elseif($dataid == 4)
-                        Tabel Tenaga Keamanan Informasi
-                    @endif
-                </h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <table id="data_tenaga" class="table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                        <th>NIK</th>
-                        <th>Nama Tenaga Teknis</th>
-                        <th>Tanggal Lahir</th>
-                        <th>No. HP</th>
-                        <th>E-Mail</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-            <!-- /.box-body -->
+    <div class="card">
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="data_tenaga" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>NIK</th>
+                    <th>Nama Tenaga Teknis</th>
+                    <th>Tanggal Lahir</th>
+                    <th>No. HP</th>
+                    <th>Divisi</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
         </div>
-    </section>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
-
-            <!-- Modal content-->
             <div class="modal-content">
+                <div class="card-header border-0 ui-sortable-handle" style="cursor: move;">
+                    <h3 class="card-title">
+                        <i class="fas fa-user"></i>
+                        Biodata Tenaga Teknis
+                    </h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                </div>
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <!--<h4 class="modal-title">Biodata Tenaga Teknis TIk</h4>
-                    <br>-->
+                    <!--<h4>Biodata Tenaga Teknis TIk</h4>-->
+                    <br>
                     <div class="table-responsive">
                         <table class="table">
-                            <tr><h4>Biodata Tenaga Teknis TIK</h4></tr>
                             <tr>
-                                <th style="width:50%">Divisi</th>
+                                <th>Divisi</th>
                                 <td><p id="divisi"></td>
                             </tr>
                             <tr>
@@ -83,15 +76,15 @@
                             </tr>
                             <tr>
                                 <th>Nama Lengkap & Gelar</th>
-                                <td><p id="nm_tenaga"></td>
+                                <td><p style="text-transform: capitalize" id="nm_tenaga"></td>
                             </tr>
                             <tr>
                                 <th>Tempat, Tanggal Lahir</th>
-                                <td id="ttl"></td>
+                                <td id="ttl" style="text-transform: capitalize"></td>
                             </tr>
                             <tr>
                                 <th>Alamat</th>
-                                <td id="alamat"></td>
+                                <td id="alamat" style="text-transform: capitalize"></td>
                             </tr>
                             <tr>
                                 <th>E-Mail</th>
@@ -110,17 +103,15 @@
                                 <td id="pendidikan"></td>
                             </tr>
                             <tr>
-                                <th>NO Rekening</th>
+                                <th>No Rekening</th>
                                 <td id="no_rekening"></td>
                             </tr>
                             <tr>
                                 <th>NPWP</th>
                                 <td id="npwp"></td>
                             </tr>
-                            <tr>
-                                <th>Nama Dev Team</th>
-                                <td id="dev_team"></td>
-                            </tr>
+
+
                         </table>
                     </div>
                     <br>

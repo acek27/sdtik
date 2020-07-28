@@ -8,7 +8,7 @@ class tenagateknis extends Model
 {
     protected $table = 'tb_tenagateknis';
     protected $primaryKey = 'id_tenaga';
-    protected $with = ['divisi'];
+    protected $with = ['divisi','users'];
     public $timestamps = false;
     protected $fillable = ['nm_tenaga', 'tempat_lahir', 'tgl_lahir', 'alamat',
         'nik', 'email', 'telp', 'id_jk', 'id_pendidikan', 'prog_studi', 'npwp',
@@ -23,6 +23,10 @@ class tenagateknis extends Model
     public function divisi()
     {
         return $this->belongsTo(divisi::class, 'id_divisi');
+    }
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function pendidikan()

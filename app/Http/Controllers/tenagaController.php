@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\divisi;
 use App\jeniskelamin;
 use App\pendidikan;
+use App\Penilaian_indikator;
+use App\Reportnoc;
 use App\tenagateknis;
 use App\User;
 use Illuminate\Http\Request;
@@ -20,10 +22,22 @@ class tenagaController extends Controller
      */
     public function index()
     {
+        $add = tenagateknis::orderBy('id_tenaga', 'desc')->get()->take(2);
         $jk = jeniskelamin::all();
         $divisi = divisi::all();
         $pendidikan = pendidikan::all();
-        return view('index', compact('jk', 'divisi', 'pendidikan'));
+        return view('index', compact('jk', 'divisi', 'pendidikan', 'add'));
+    }
+
+    public function profils()
+    {
+        $profils = tenagateknis::all();
+        return view('Tenagatik.all_tenaga', compact('profils'));
+    }
+    public function profildetail($id)
+    {
+        $data = tenagateknis::find($id);
+        return view('Tenagatik.profil', compact('data'));
     }
 
     /**
@@ -62,9 +76,10 @@ class tenagaController extends Controller
 
         $request->validate([
             'tanggallahir' => 'date|required',
-            'nik' => 'numeric|digits:16|required',
+            'nik' => 'numeric|digits:16|required|unique:tb_tenagateknis',
             'hp' => 'numeric|required',
             'email' => 'email|required|unique:users',
+            'password' => 'required|min:8',
         ]);
 
         $user = new User();

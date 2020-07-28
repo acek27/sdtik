@@ -68,6 +68,8 @@ Route::middleware(['auth', 'can:teknis'])->group(function () {
 
 Route::middleware(['auth', 'can:admin_teknis'])->group(function () {
     Route::Resource('/daftar', 'tenagaController');
+    Route::get('/profils', 'tenagaController@profils')->name('profils');
+    Route::get('/profildetail/{id}', 'tenagaController@profildetail')->name('profildetail');
     Route::get('/data_tenaga_teknis', function () {
         return redirect()->route('homes.index');
     })->name('indexs');
