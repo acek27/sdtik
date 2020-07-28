@@ -8,6 +8,7 @@ class tenagateknis extends Model
 {
     protected $table = 'tb_tenagateknis';
     protected $primaryKey = 'id_tenaga';
+    protected $with = ['divisi'];
     public $timestamps = false;
     protected $fillable = [];
 

@@ -1,211 +1,224 @@
 @extends('layouts.master')
 @section('title')
-    <title>Admin PSTIK</title>
+    <title>DASHBOARD | SDTIK</title>
 @endsection
-@section('css')
+@push('css')
     <link href="{{url('https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.13/combined/css/gijgo.min.css')}}"
           rel="stylesheet"/>
-    <link rel="stylesheet" href="{{asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
-@endsection
+    <link rel="stylesheet" href="{{url('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}">
+@endpush
 @section('header')
-    <section class="content-header">
-
-
-    </section>
+    Dashboard SDTIK
+@endsection
+@section('link')
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="home">Dashboard</a></li>
+            <li class="breadcrumb-item active">SDTIK</li>
+        </ol>
+    </div>
 @endsection
 @section('content')
-    <style>
-        .bg-light-blue-gradient {
-            background: #3c8dbc !important;
-            background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #3c8dbc), color-stop(1, #67a8ce)) !important;
-            background: -ms-linear-gradient(bottom, #3c8dbc, #67a8ce) !important;
-            background: -moz-linear-gradient(center bottom, #3c8dbc 0, #67a8ce 100%) !important;
-            background: -o-linear-gradient(#67a8ce, #3c8dbc) !important;
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#67a8ce', endColorstr='#3c8dbc', GradientType=0) !important;
-            color: #fff;
-        }
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>{{$data->where('id_divisi',1)->count('id_tenaga')}}<sup style="font-size: 20px"> Orang</sup>
+                    </h3>
 
-        .box {
-            position: relative;
-            border-radius: 3px;
-            background: #ffffff;
-            border-top: 3px solid #d2d6de;
-            margin-bottom: 20px;
-            width: 100%;
-            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-        }
-
-        .box .box-header .box-title {
-            font-size: 24px;
-        }
-
-        .box-header > .fa, .box-header > .glyphicon, .box-header > .ion, .box-header .box-title {
-            display: inline-block;
-            font-size: 18px;
-            margin: 0;
-            line-height: 1;
-        }
-
-        .h1, .h2, .h3, .h4, body, h1, h2, h3, h4, h5, h6 {
-            font-family: Roboto, Helvetica, Arial, sans-serif;
-            font-weight: 300;
-        }
-    </style>
-    <section class="content">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-primary">
-                    <div class="inner">
-                        <h3>{{$data->where('id_divisi',1)->count('id_tenaga')}}<sup style="font-size: 20px"> Orang</sup>
-                        </h3>
-                        <p>Programming</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-code"></i>
-                    </div>
-                    <a href="{{route('homes.show',1)}}" class="small-box-footer">More info <i
-                            class="fa fa-arrow-circle-right"></i></a>
+                    <p>Programming</p>
                 </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-green">
-                    <div class="inner">
-                        <h3>{{$data->where('id_divisi',2)->count('id_tenaga')}}<sup style="font-size: 20px"> Orang</sup>
-                        </h3>
-
-                        <p>Networking</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-sitemap"></i>
-                    </div>
-                    <a href="{{route('homes.show',2)}}" class="small-box-footer">More info <i
-                            class="fa fa-arrow-circle-right"></i></a>
+                <div class="icon">
+                    <i class="fa fa-code"></i>
                 </div>
+                <a href="{{route('homes.show',1)}}  " class="small-box-footer">More info <i
+                        class="fas fa-arrow-circle-right"></i></a>
             </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-yellow">
-                    <div class="inner">
-                        <h3>{{$data->where('id_divisi',3)->count('id_tenaga')}}<sup style="font-size: 20px"> Orang</sup>
-                        </h3>
-
-                        <p>Multimedia</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-image"></i>
-                    </div>
-                    <a href="{{route('homes.show',3)}}" class="small-box-footer">More info <i
-                            class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-red">
-                    <div class="inner">
-                        <h3>{{$data->where('id_divisi',4)->count('id_tenaga')}}<sup style="font-size: 20px"> Orang</sup>
-                        </h3>
-
-                        <p>Keamanan Informasi</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-key"></i>
-                    </div>
-                    <a href="{{route('homes.show',4)}}" class="small-box-footer">More info <i
-                            class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <!-- ./col -->
         </div>
-        <!-- /.row -->
-        <!-- Main row -->
-        <div class="row">
-            <!-- Left col -->
-            <section class="col-lg-7 connectedSortable">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <i class="fa fa-bar-chart"></i>
-                        <h3 class="box-title">Grafik Tenaga Teknis TIK</h3>
-                    </div>
-                    <div class="box-body">
-                        <div class="chart">
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>{{$data->where('id_divisi',2)->count('id_tenaga')}}<sup style="font-size: 20px"> Orang</sup>
+                    </h3>
+                    <p>Networking</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-sitemap"></i>
+                </div>
+                <a href="{{route('homes.show',2)}}" class="small-box-footer">More info <i
+                        class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>{{$data->where('id_divisi',3)->count('id_tenaga')}}<sup style="font-size: 20px"> Orang</sup>
+                    </h3>
+
+                    <p>Multimedia</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-image"></i>
+                </div>
+                <a href="{{route('homes.show',3)}}" class="small-box-footer">More info <i
+                        class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h3>{{$data->where('id_divisi',4)->count('id_tenaga')}}<sup style="font-size: 20px"> Orang</sup>
+                    </h3>
+
+                    <p>Keamanan Informasi</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-key"></i>
+                </div>
+                <a href="{{route('homes.show',4)}}" class="small-box-footer">More info <i
+                        class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+    </div>
+    <div class="row">
+        <section class="col-lg-7 connectedSortable ui-sortable">
+            <!-- Custom tabs (Charts with tabs)-->
+            <div class="card">
+                <div class="card-header ui-sortable-handle" style="cursor: move;">
+                    <h3 class="card-title">
+                        <i class="fas fa-chart-pie mr-1"></i>
+                        Grafik Tenaga Teknis
+                    </h3>
+                </div><!-- /.card-header -->
+                <div class="card-body">
+                    <div class="tab-content p-0">
+                        <!-- Morris chart - Sales -->
+                        <div class="chart tab-pane active" id="revenue-chart">
+                            <div class="chartjs-size-monitor">
+                                <div class="chartjs-size-monitor-expand">
+                                    <div class=""></div>
+                                </div>
+                                <div class="chartjs-size-monitor-shrink">
+                                    <div class=""></div>
+                                </div>
+                            </div>
                             <canvas id="myChart" style="height:230px"></canvas>
-
+                        </div>
+                        <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+                            <canvas id="myChart" style="height:230px"></canvas>
                         </div>
                     </div>
-                    <!-- /.box-body -->
-                </div>
-            </section>
-            <!-- /.Left col -->
-            <!-- right col (We are only adding the ID to make the widgets sortable)-->
-            <section class="col-lg-5 connectedSortable">
+                </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </section>
+        <section class="col-lg-5 connectedSortable ui-sortable">
 
-                <!-- Map box -->
-                <div class="box box-solid bg-light-blue-gradient">
-                    <div class="box-header">
+            <!-- Map card -->
+            <div class="card bg-gradient-primary">
+                <div class="card-header border-0 ui-sortable-handle" style="cursor: move;">
+                    <h3 class="card-title">
                         <i class="fas fa-graduation-cap"></i>
-                        <h3 class="box-title">
-                            Pendidikan
-                        </h3>
-                        <div class="chart">
-                            <canvas id="donat" style="height:230px; "></canvas>
-                        </div>
-                    </div>
-
+                        Data Pendidikan
+                    </h3>
                 </div>
-                <!-- /.box -->
-            </section>
-            <!-- right col -->
-        </div>
-    </section>
-    <section class="content">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">
-                    Tabel Tenaga Teknis TIK
-                </h3>
-
-                <a href="{{route('download')}}" class="btn btn-primary pull-right" style="margin-right: 5px;">
-                    <i class="fa fa-download"></i> Download
-
-                </a>
-                <div class="" style="margin-bottom:10px;"><br></div>
+                <div class="card-body">
+                    <canvas id="donat" style="height:230px; "></canvas>
+                </div>
+                <!-- /.card-body-->
             </div>
+            <!-- /.card -->
 
-            <!-- /.box-header -->
-            <div class="box-body table-responsive">
-                <table id="data_tenaga" class="table table-striped dataTable no-footer" style="width:1069px">
-                    <thead>
-                    <tr>
-                        <th>NIK</th>
-                        <th>Nama Tenaga Teknis</th>
-                        <th>Tanggal Lahir</th>
-                        <th>No. HP</th>
-                        <th>Divisi</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
+        </section>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Data Tenaga TIK</h3>
+            <a href="{{route('download')}}" class="btn btn-primary pull-right" style="margin-right: 5px;">
+                <i class="fa fa-download"></i> Download</a>
         </div>
-    </section>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="data_tenaga" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>NIK</th>
+                    <th>Nama Tenaga Teknis</th>
+                    <th>Tanggal Lahir</th>
+                    <th>No. HP</th>
+                    <th>Divisi</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <div class="col-md-12">
+        <!-- USERS LIST -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Galeri Tenaga Teknis</h3>
+
+                <div class="card-tools">
+                    <span class="badge badge-danger">{{$data->count('id')}} Tenaga Teknis</span>
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <ul class="users-list clearfix">
+                    @foreach($data as $galeri)
+                        <li>
+                            <img src="dist/img/user1-128x128.jpg" alt="User Image">
+                            <a class="users-list-name" href="#">{{$galeri->nm_tenaga}}</a>
+                            <span class="users-list-date">{{$galeri->divisi->nama_divisi}}</span>
+                        </li>
+                    @endforeach
+                </ul>
+                <!-- /.users-list -->
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer text-center">
+                <a href="#">View All Users</a>
+            </div>
+            <!-- /.card-footer -->
+        </div>
+        <!--/.card -->
+    </div>
+    <!-- /.card -->
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
+                <div class="card-header border-0 ui-sortable-handle" style="cursor: move;">
+                    <h3 class="card-title">
+                        <i class="fas fa-user"></i>
+                        Biodata Tenaga Teknis
+                    </h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                </div>
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <!--<h4>Biodata Tenaga Teknis TIk</h4>-->
                     <br>
                     <div class="table-responsive">
                         <table class="table">
-                            <tr><h4>Biodata Tenaga Teknis TIK</h4></tr>
                             <tr>
                                 <th>Divisi</th>
                                 <td><p id="divisi"></td>
@@ -262,9 +275,45 @@
             </div>
         </div>
     </div>
-
 @endsection
 @push('script')
+    <script src="{{url('https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            var dt = $('#data_tenaga').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{route('tenaga.data')}}',
+                columns: [
+                    {data: 'nik', name: 'nik'},
+                    {data: 'nm_tenaga', name: 'nm_tenaga'},
+                    {data: 'tgl_lahir', name: 'tgl_lahir'},
+                    {data: 'telp', name: 'telp'},
+                    {data: 'nama_divisi', name: 'nama_divisi', orderable: false, searchable: false, align: 'center'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false, align: 'center'},
+                ],
+            });
+        });
+
+        $('body').on("click", '.show-data', function (e) {
+            $('#myModal').modal("show");
+            $.get("{{url('/biodata')}}/" + $(this).attr('data-id'), function (data) {
+                console.log(data);
+                $('#divisi').text(data.nama_divisi);
+                $('#nik').text(data.nik);
+                $('#nm_tenaga').text(data.nm_tenaga);
+                $('#ttl').text(data.tempat_lahir + ', ' + data.tgl_lahir);
+                $('#alamat').text(data.alamat);
+                $('#email').text(data.email);
+                $('#hp').text(data.telp);
+                $('#jk').text(data.jenis_kelamin);
+                $('#pendidikan').text(data.pendidikan + ', ' + data.prog_studi);
+                $('#no_rekening').text(data.no_rekening);
+                $('#npwp').text(data.npwp);
+                $('#dev_team').text(data.dev_team);
+            });
+        });
+    </script>
     <script src="{{url('https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js')}}"></script>
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
@@ -361,46 +410,5 @@
                 },
             }
         });
-    </script>
-@endpush
-@push('script')
-    <!-- <script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>-->
-    <script>
-        $(document).ready(function () {
-            var dt = $('#data_tenaga').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: '{{route('tenaga.data')}}',
-                columns: [
-                    {data: 'nik', name: 'nik'},
-                    {data: 'nm_tenaga', name: 'nm_tenaga'},
-                    {data: 'tgl_lahir', name: 'tgl_lahir'},
-                    {data: 'telp', name: 'telp'},
-                    {data: 'nama_divisi', name: 'nama_divisi', orderable: false, searchable: false, align: 'center'},
-                    {data: 'action', name: 'action', orderable: false, searchable: false, align: 'center'},
-                ],
-            });
-        });
-
-        $('body').on("click", '.show-data', function (e) {
-            $('#myModal').modal("show");
-            $.get("{{url('/biodata')}}/" + $(this).attr('data-id'), function (data) {
-                console.log(data);
-                $('#divisi').text(data.nama_divisi);
-                $('#nik').text(data.nik);
-                $('#nm_tenaga').text(data.nm_tenaga);
-                $('#ttl').text(data.tempat_lahir + ', ' + data.tgl_lahir);
-                $('#alamat').text(data.alamat);
-                $('#email').text(data.email);
-                $('#hp').text(data.telp);
-                $('#jk').text(data.jenis_kelamin);
-                $('#pendidikan').text(data.pendidikan + ', ' + data.prog_studi);
-                $('#no_rekening').text(data.no_rekening);
-                $('#npwp').text(data.npwp);
-                $('#dev_team').text(data.dev_team);
-            });
-        });
-
     </script>
 @endpush

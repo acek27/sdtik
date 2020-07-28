@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Aplikasi SDTIK</title>
+@yield('title')
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -336,12 +336,7 @@
                     <div class="col-sm-6">
                         <h1>@yield('header')</h1>
                     </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="home">@yield('home')</a></li>
-                            <li class="breadcrumb-item active">@yield('page')</li>
-                        </ol>
-                    </div>
+                    @yield('link')
                 </div>
             </div><!-- /.container-fluid -->
         </section>

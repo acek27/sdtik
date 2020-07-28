@@ -25,7 +25,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Projects Detail</h3>
+                <h3 class="card-title">NOC Dashboard</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
@@ -54,13 +54,16 @@
                                     <div class="info-box-content">
                                         <span class="info-box-text text-center text-muted"><a href="#" class="popper"
                                                                                               data-popbox="pop1">Status</a></span>
-                                            @if($indikator->where('nilai',1)->count('id') == 4)
-                                                <span class="info-box-number bg-success text-center text-muted"> Secure</span>
-                                            @elseif($indikator->where('nilai',1)->count('id') < 4)
-                                                <span class="info-box-number bg-warning text-center text-muted"> Warning</span>
-                                            @elseif($indikator->where('nilai',1)->count('id') == 0)
-                                                <span class="info-box-number bg-danger text-center text-muted"> Danger</span>
-                                            @endif
+                                        @if($indikator->where('nilai',1)->count('id') == 4)
+                                            <span
+                                                class="info-box-number bg-success text-center text-muted"> Secure</span>
+                                        @elseif($indikator->where('nilai',1)->count('id') < 4)
+                                            <span
+                                                class="info-box-number bg-warning text-center text-muted"> Warning</span>
+                                        @elseif($indikator->where('nilai',1)->count('id') == 0)
+                                            <span
+                                                class="info-box-number bg-danger text-center text-muted"> Danger</span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -108,17 +111,20 @@
                                     </div>
                                 @endforeach
                             </div>
+                            <div class="card-footer text-center">
+                                <a href="#">View All</a>
+                            </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
-                        <h3 class="text-primary"><i class="fas fa-paint-brush"></i> AdminLTE v3</h3>
+                        <h3 class="text-primary"><i class="fas fa-paint-brush"></i> Jadwal Piket NOC</h3>
                         <div class="calendar-time" id="calendar"></div>
                         <br>
                         <div class="text-muted">
-                            <p class="text-sm">Client Company
+                            <p class="text-sm">Piket Kemaren
                                 <b class="d-block">Deveint Inc</b>
                             </p>
-                            <p class="text-sm">Project Leader
+                            <p class="text-sm">Piket Besok
                                 <b class="d-block">Tony Chicken</b>
                             </p>
                         </div>
@@ -195,7 +201,9 @@
                 <!-- /.table-responsive -->
                 <div class="card-footer clearfix">
                     <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Detail</a>
-                    <button href="javascript:void(0)" class="btn btn-sm btn-secondary float-right" data-card-widget="remove">Close</button>
+                    <button href="javascript:void(0)" class="btn btn-sm btn-secondary float-right"
+                            data-card-widget="remove">Close
+                    </button>
                 </div>
             </div>
 
