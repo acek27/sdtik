@@ -53,18 +53,10 @@ class HomeController extends Controller
                 ->groupby('waktu_pengembangan')
                 ->get();
 
-
-            // $re = [0, 0, 0, 0];
-            // foreach ($chart as $key => $value) {
-            //     $re[$value->id_divisi - 1]= $value->total;
-            // }
-            // $data1 = implode(', ', $chart-<);
             return view('grafik', compact('chart', 'chart_ram', 'chart_hdd', 'chart_core', 'chart_ip_server', 'chart_aplikasi', 'chart_pengembang'));
-
-
         } else if
         (\Auth::user()->can('teknis') == 2) {
-            return redirect()->route('laporan_hari.index');
+            return redirect()->route('tenagatik.index');
 
         } else if
         (\Auth::user()->can('admin_teknis') == 3) {

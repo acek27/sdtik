@@ -287,39 +287,36 @@
                     @endcan
                     @can('teknis')
                         <li class="nav-item">
-
-
-                            <a href="{{route('laporan_hari.index')}}" class="nav-link">
+                            <a href="{{route('tenagatik.index')}}" class="nav-link">
                                 <i class="fas fa-database nav-icon"></i>
-                                <p>Laporan_Harian</p>
+                                <p>Dashboard</p>
                             </a>
                         </li>
                         <li class="nav-item">
-
-
                             <a href="#" class="nav-link">
                                 <i class="fas fa-database nav-icon"></i>
-                                <p>Dokumentasi</p>
+                                <p>Piket NOC</p>
                             </a>
                         </li>
                     @endcan
 
                     @can('admin_teknis')
-
                         <li class="nav-item">
-
-
                             <a href="{{route('homes.index')}}" class="nav-link">
                                 <i class="fas fa-database nav-icon"></i>
                                 <p>Data Tenaga Teknis TIK</p>
                             </a>
                         </li>
                         <li class="nav-item">
-
-
                             <a href="{{route('daftar.index')}}" class="nav-link">
                                 <i class="fas fa-book nav-icon"></i>
                                 <p>Data Tenaga Baru</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('noc.index')}}" class="nav-link">
+                                <i class="fas fa-book nav-icon"></i>
+                                <p>NOC</p>
                             </a>
                         </li>
                     @endcan
