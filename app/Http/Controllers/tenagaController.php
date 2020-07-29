@@ -23,9 +23,9 @@ class tenagaController extends Controller
     public function index()
     {
         $add = tenagateknis::orderBy('id_tenaga', 'desc')->get()->take(2);
-        $jk = jeniskelamin::all();
-        $divisi = divisi::all();
-        $pendidikan = pendidikan::all();
+        $jk = jeniskelamin::pluck('jenis_kelamin', 'id_jk')->all();
+        $divisi = divisi::pluck('nama_divisi', 'id_divisi')->all();
+        $pendidikan = pendidikan::pluck('pendidikan', 'id_pendidikan')->all();
         return view('index', compact('jk', 'divisi', 'pendidikan', 'add'));
     }
 
@@ -34,6 +34,7 @@ class tenagaController extends Controller
         $profils = tenagateknis::all();
         return view('Tenagatik.all_tenaga', compact('profils'));
     }
+
     public function profildetail($id)
     {
         $data = tenagateknis::find($id);
@@ -60,59 +61,25 @@ class tenagaController extends Controller
 
     public function store(Request $request)
     {
-        $divisi = $request->get('divisi');
-        $nama = $request->get('nama');
-        $tempatlahir = $request->get('tempatlahir');
-        $tanggallahir = $request->get('tanggallahir');
-        $alamat = $request->get('alamat');
-        $nik = $request->get('nik');
-        $email = $request->get('email');
-        $hp = $request->get('hp');
-        $jeniskelamin = $request->get('jeniskelamin');
-        $pendidikan = $request->get('pendidikan');
-        $jurusan = $request->get('jurusan');
-        $no_rekening = $request->get('no_rekening');
-        $npwp = $request->get('npwp');
-
-        $request->validate([
-            'tanggallahir' => 'date|required',
-            'nik' => 'numeric|digits:16|required|unique:tb_tenagateknis',
-            'hp' => 'numeric|required',
-            'email' => 'email|required|unique:users',
-            'password' => 'required|min:8',
-        ]);
-
+        $this->validate($request, User::$rulesCreate);
         $user = new User();
-        $user->name = $nama;
-        $user->email = $email;
+        $user->name = $request->get('nm_tenaga');
+        $user->email = $request->get('email');
         $user->password = Hash::make($request->get('password'));
         $user->role_id = '2';
         $user->save();
 
-        $cek = User::where('name', $nama)->where('email', $email);
+        $cek = User::where('name', $request->get('nm_tenaga'))->where('email', $request->get('email'));
         if ($cek->exists()) {
-            $user_id = User::where('name', $nama)->where('email', $email)->value('id');
-            $tenaga = new tenagateknis();
-            $tenaga->nm_tenaga = $nama;
-            $tenaga->tempat_lahir = $tempatlahir;
-            $tenaga->tgl_lahir = $tanggallahir;
-            $tenaga->alamat = $alamat;
-            $tenaga->nik = $nik;
-            $tenaga->email = $email;
-            $tenaga->telp = $hp;
-            $tenaga->id_jk = $jeniskelamin;
-            $tenaga->id_pendidikan = $pendidikan;
-            $tenaga->prog_studi = $jurusan;
-            $tenaga->npwp = $npwp;
-            $tenaga->no_rekening = $no_rekening;
-            $tenaga->id_divisi = $divisi;
-            $tenaga->user_id = $user_id;
-            $tenaga->save();
+            $this->validate($request, tenagateknis::$rulesCreate);
+            $user_id = User::where('name', $request->get('nm_tenaga'))->where('email', $request->get('email'))->value('id');
+            $request->merge(['user_id' => $user_id]);
+            tenagateknis::create($request->all());
         }
 
         \Session::flash("flash_notification", [
             "level" => "success",
-            "message" => "Berhasil Menyimpan, $nama!"
+            "message" => "Berhasil Menyimpan, " . $request->get('nm_tenaga')
         ]);
         return redirect()->route('homes.index');
     }

@@ -35,10 +35,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public static $rulesCreate = [
+        'email' => 'email|required|unique:users',
+        'password' => 'required|string|min:8',
+    ];
+
     public function reportnoc()
     {
         return $this->hasMany(Reportnoc::class);
     }
+
     public function tenagateknis()
     {
         return $this->hasMany(tenagateknis::class);

@@ -8,12 +8,18 @@ class tenagateknis extends Model
 {
     protected $table = 'tb_tenagateknis';
     protected $primaryKey = 'id_tenaga';
-    protected $with = ['divisi','users'];
+    protected $with = ['divisi', 'users'];
     public $timestamps = false;
     protected $fillable = ['nm_tenaga', 'tempat_lahir', 'tgl_lahir', 'alamat',
         'nik', 'email', 'telp', 'id_jk', 'id_pendidikan', 'prog_studi', 'npwp',
         'no_rekening', 'id_divisi', 'user_id'];
     protected $attributes = ['dev_team' => 'Team A'];
+
+    public static $rulesCreate = [
+        'tgl_lahir' => 'date|required',
+        'nik' => 'numeric|digits:16|required|unique:tb_tenagateknis',
+        'telp' => 'numeric|required',
+    ];
 
     public function jeniskelamin()
     {
@@ -24,6 +30,7 @@ class tenagateknis extends Model
     {
         return $this->belongsTo(divisi::class, 'id_divisi');
     }
+
     public function users()
     {
         return $this->belongsTo(User::class, 'user_id');
