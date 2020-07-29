@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class tenagateknis extends Model
 {
@@ -21,10 +22,44 @@ class tenagateknis extends Model
         'telp' => 'numeric|required',
     ];
 
+    public static function rulesEdit(tenagateknis $data)
+    {
+        return [
+            'tgl_lahir' => 'date|required',
+            'nik' => 'numeric|digits:16|required',
+            'telp' => 'numeric|required',
+        ];
+    }
+
+    public function getNmTenagaAttribute($value)
+    {
+        return ucwords(strtolower($value));
+    }
+
+    public function getTempatLahirAttribute($value)
+    {
+        return ucwords(strtolower($value));
+    }
+
+    public function getProgStudiAttribute($value)
+    {
+        return ucwords(strtolower($value));
+    }
+
     public function jeniskelamin()
     {
         return $this->belongsTo(jeniskelamin::class, 'id_jk');
     }
+
+    public function getUsiaAttribute()
+    {
+        $end = Carbon::parse($this->tgl_lahir);
+        $now = Carbon::now();
+        $length = $end->diffInDays($now);
+        $result = $length / 365;
+        return floor($result);
+    }
+
 
     public function divisi()
     {

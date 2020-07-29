@@ -103,7 +103,12 @@ class tenagaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $add = tenagateknis::orderBy('id_tenaga', 'desc')->get()->take(2);
+        $jk = jeniskelamin::pluck('jenis_kelamin', 'id_jk')->all();
+        $divisi = divisi::pluck('nama_divisi', 'id_divisi')->all();
+        $pendidikan = pendidikan::pluck('pendidikan', 'id_pendidikan')->all();
+        $data = tenagateknis::find($id);
+        return view('Tenagatik.edit', compact('jk', 'divisi', 'pendidikan', 'add', 'data'));
     }
 
     /**
@@ -115,7 +120,14 @@ class tenagaController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        $data = tenagateknis::find($id);
+        $this->validate($request, tenagateknis::rulesEdit($data));
+        $data->update($request->all());
+        \Session::flash("flash_notification", [
+            "level" => "success",
+            "message" => "Berhasil Menyimpan, " . $request->get('nm_tenaga')
+        ]);
+        return redirect()->route('homes.index');
     }
 
     /**

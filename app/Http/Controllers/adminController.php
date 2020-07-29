@@ -88,7 +88,7 @@ class adminController extends Controller
         if ($request->id == 0) {
             return DataTables::of(tenagateknis::join('tb_divisi', 'tb_tenagateknis.id_divisi', '=', 'tb_divisi.id_divisi'))
                 ->addColumn('action', function ($data) {
-                    $edit = '<a href="' . route('homes.edit', $data->id_tenaga) . '" class="edit-data"><i class="fa fa-edit text-primary"></i></a>';
+                    $edit = '<a href="' . route('daftar.edit', $data->id_tenaga) . '" class="edit-data"><i class="fa fa-edit text-primary"></i></a>';
                     $detail = '<a href="#" data-id="' . $data->user_id . '" class="show-data"><i class="fas fa-search text-success"></i></a>';
                     $del = '<a href="#" class="hapus-data" data-id="' . $data->user_id . '" ><i class="fa fa-trash text-danger"></i></a>';
                     return $edit . '&nbsp' . '&nbsp' . $detail . '&nbsp' . $del;
@@ -130,37 +130,7 @@ class adminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'tanggallahir' => 'date|required',
-            'nik' => 'numeric|digits:16|required',
-            'hp' => 'numeric|required',
-            'email' => 'email|required',
-        ]);
 
-        $data = tenagateknis::findOrFail($id);
-        $data->nm_tenaga = $request->get('nama');
-        $data->tempat_lahir = $request->get('tempatlahir');
-        $data->tgl_lahir = $request->get('tanggallahir');
-        $data->alamat = $request->get('alamat');
-        $data->nik = $request->get('nik');
-        $data->email = $request->get('email');
-        $data->telp = $request->get('hp');
-        $data->telp = $request->get('hp');
-        $data->id_jk = $request->get('jeniskelamin');
-        $data->id_pendidikan = $request->get('pendidikan');
-        $data->prog_studi = $request->get('jurusan');
-        $data->no_rekening = $request->get('no_rekening');
-        $data->npwp = $request->get('npwp');
-        $data->dev_team = $request->get('dev_team');
-        $data->id_divisi = $request->get('divisi');
-        $data->update();
-
-        \Session::flash("flash_notification", [
-            "level" => "success",
-            "message" => "Berhasil Menyimpan. Terimakasih!"
-        ]);
-
-        return redirect()->route('homes.index');
     }
 
     /**

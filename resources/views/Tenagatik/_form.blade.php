@@ -149,7 +149,7 @@
                         'placeholder' => '-Pilih Pendidikan-'
                     ]) }}
                 </div>
-                <div class="col-md-8" style="display: none" id="divjurusan">
+                <div class="col-md-8">
                     {{ Form::text('prog_studi',null,[
                         'class'=>'form-control',
                         'id' => 'prog_studi',
